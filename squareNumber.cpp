@@ -16,30 +16,29 @@ int main() {
     int numCheck;
     int squareNumber;
     int numberInt;
-    int numberFloat;
+    float numberFloat;
     // Input
     std::cout << "Enter how many times to repeat: ";
     std::cin >> num;
     std::cout << "" << std::endl;
 
-   // process & output
-   try {
-        numberFloat = std::strtof(num);
-         numberInt = int(numberFloat);
-        if (numberInt == numberFloat) {
-           std::cout << "it's an Integer" << std::endl;
-            }else {
-            std::cout << "Invalid it's a decimal" << std::endl;
-            exit(1);
-        }
+    // process & output
+    try {
+        numberFloat = std::atof(num.c_str());
+        numberInt = std::stoi(num);
 
-      for(squareNumber = 1; squareNumber <= numberFloat; squareNumber++) {
-         total = squareNumber*squareNumber;
-         std::cout << "the square number for " << squareNumber << (" = ") <<
-                    total<< std::endl;
+        if (numberFloat != numberInt) {
+            // not integer code
+             std::cout << "Invalid number";
+        } else {
+            // integer code
+            for (squareNumber = 1; squareNumber <= numberInt; squareNumber++) {
+                total = squareNumber*squareNumber;
+                std::cout << "the square number for " << squareNumber << (" = ")
+                    << total << std::endl;
         }
-   }catch (std::invalid_argument) {
+    }
+    } catch (std::invalid_argument) {
         std::cout << "Invalid number";
-
     }
 }
